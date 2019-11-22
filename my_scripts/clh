@@ -1,0 +1,3 @@
+#!/bin/bash
+rm /home/bakemono/.zsh_history
+touch /home/bakemono/.zsh_history

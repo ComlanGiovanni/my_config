@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/bakemono/Documents/synergy-core-master/build/bin/
+./synergy

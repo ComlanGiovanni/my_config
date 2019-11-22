@@ -1,0 +1,2 @@
+#!/bin/bash
+git clone git@git.epitech.eu:/giovanni.comlan@epitech.eu/$1

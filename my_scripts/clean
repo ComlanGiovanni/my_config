@@ -1,0 +1,7 @@
+#!/bin/bash
+find -name "*~" -delete
+find -name "#*" -delete
+find -name "*#" -delete
+find -name "*.gcno" -delete
+find -name "*.gcda" -delete
+find -name "*.o" -delete

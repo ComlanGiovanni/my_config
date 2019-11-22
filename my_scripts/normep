@@ -1,0 +1,3 @@
+#!/bin/bash
+cp /home/bakemono/Documents/od/Help/check\ Norme/d.rb $(pwd)
+cp /home/bakemono/Documents/od/Help/check\ Norme/s.rb $(pwd)

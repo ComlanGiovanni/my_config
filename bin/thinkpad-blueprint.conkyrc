@@ -1,0 +1,103 @@
+conky.config = { 
+
+	background = true,
+	use_xft = true,
+	font = 'monospace:size=8',
+	xftalpha = 0.8,
+	update_interval = 1,
+	total_run_times = 0,
+	own_window = true,
+	own_window_transparent = true,
+	own_window_type = 'desktop',
+	own_window_class = 'Conky',
+	own_window_argb_visual = true,
+	own_window_colour = '#000000',
+	own_window_argb_value = 150,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	double_buffer = true,
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = true,
+	stippled_borders = 0,
+	border_width = 0,
+	default_color = 'grey',
+	default_shade_color = 'grey',
+	default_outline_color = 'black',
+	alignment = 'top_middle',
+	gap_x = 5,
+	gap_y = 0,
+	no_buffers = true,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	override_utf8_locale = true,
+	use_spacer = 'right',
+	maximum_width = 1080,
+        minimum_height = 800,
+	uppercase = true,
+
+
+};
+
+conky.text = [[
+#leet chars: ┤┤└└┴┴┐┐││┘┘┌┌├├┬┬┼┼┴┴── ││ ▽▼△▲▵▴▾▿
+${alignc}                                                                                                                                          
+
+
+
+
+
+
+${offset 240}┌───────────-${nodename}${font}-──────────
+${offset 160}┌──────-${uid_name 1000}${font}
+${offset 160}├─- Distro < ${exec cat /etc/issue.net} >
+${offset 160}├─- Kernel < ${kernel} >
+${offset 160}├─- Uptime ${exec /home/guts/.bin/uptime_conky.sh}
+${offset 160}└─- Updates < ${execi 360 aptitude search "~U" | wc -l | tail} >
+
+
+${alignr}────────────────- < ${exec /home/guts/.bin/get_gpu.sh gpu} >
+${alignr}< ${exec /home/guts/.bin/get_gpu.sh res} >
+
+
+${alignc}${offset -180}< ${exec cat /etc/default/locale | grep "LANG=" | cut -d"\"" -f2} > -───────
+${alignc} 
+${alignc} 
+${alignc} 
+${alignc} 
+${alignc} 
+${alignc} 
+${alignc} 
+${alignc} 
+${alignc} 
+${alignc} 
+${alignc}${offset -245}    < ${exec sensors | grep "fan1" | cut -d" " -f9-} > -─────────────
+${alignc}
+${alignc} 
+${alignr}${offset -30} ───────────────────- < $mem/$memmax >  < $memperc% > used    
+${alignc}${offset -200}temperatures -────────────────
+${alignc}${offset -230}CPU0 < ${execi 5 sensors|grep 'Core 0'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C > 
+${alignc}${offset -230}CPU1 < ${execi 5 sensors|grep 'Core 1'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C > 
+
+${alignr}${offset -530} < ${execi 1000 cat /proc/cpuinfo|grep 'model name'|sed -e 's/model name.*: //'| uniq | cut -c 1-25} > -────────────
+${offset 200}used/freq
+${alignc}${offset -250} < ${cpu cpu 0}% / ${freq 0}mhz > cpu0
+${alignc}${offset -250} < ${cpu cpu 1}% / ${freq 1}mhz > cpu1
+${alignc}${offset -250} < ${cpu cpu 2}% / ${freq 2}mhz > cpu2
+${alignc}${offset -250} < ${cpu cpu 3}% / ${freq 3}mhz > cpu3
+${alignr}${offset -80}──────────────────- ${exec /home/guts/.bin/is_connected.sh}
+${alignr}${offset -80}< ${upspeedgraph wlp3s0 12,120 06E9F8 2104FA} >< ${downspeedgraph wlp3s0 12,120 FFFF00 DD3A21} >
+${alignc} 
+${alignr}${offset -640}volume: ${exec amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }'} -────────────
+${alignr}${offset -40}───────────- /home < ${fs_bar 5,120 /home} >
+${alignr}${offset -40} /   < ${fs_bar 5,120 /} >
+${alignr}${offset -40} /var < ${fs_bar 5,120 /var} >
+${alignr}
+${alignc} 
+${alignr}${offset -80}───────- /backup < ${fs_bar 5,120 /media/guts/2a598ea5-f473-4fdf-8aa3-17b2f0ce216d} >
+${alignc} 
+${alignc} 
+${alignc} 
+${alignr}${offset -80}${exec /home/guts/.bin/get_battery.sh}
+
+]];
